@@ -14,7 +14,8 @@ sudo nft add chain inet filter output { type filter hook output priority 0 \; }
 # خواندن و مسدود کردن رنج‌های آی‌پی
 curl -s "$url" | while IFS= read -r line; do
   ((++line_number))
-  sudo nft add rule inet filter output ip daddr $line tcp dport { 80, 443 } drop
+  sudo nft add rule inet filter output ip daddr $line tcp dport 80 drop
+  sudo nft add rule inet filter output ip daddr $line tcp dport 443 drop
   clear
   echo "Iran IP Blocking ( List 1 ) : $line_number / $allcount "
 done
